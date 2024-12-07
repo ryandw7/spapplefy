@@ -43,30 +43,40 @@ const theme = createTheme({
     },
   },
   components: {
+    Container: {
+      p: 0
+    },
     MuiButton: {
       styleOverrides: {
         root: {
           borderRadius: "24px", // Rounded buttons like Spotify's
-          padding: "10px 20px",
+          p: 0,
           fontSize: "1rem",
         },
         containedPrimary: {
           backgroundColor: "#1DB954", // Spotify green
           color: "#FFFFFF",
           "&:hover": {
-            backgroundColor: "#1AA34A", // Slightly darker green
+            backgroundColor: "#1AA34A", // Slightly darker green  
           },
         },
       },
     },
   },
+  MuiContainer: {
+    styleOverrides: {
+      root: {
+        padding: 0,
+      }
+    }
+  }
 });
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-    <App />
-    </ThemeProvider>
- 
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <App className="app"/>
+  </ThemeProvider>
+
 );
