@@ -10,7 +10,7 @@ const authFlow = () => {
     url += '?client_id=' + CLIENT_ID;
     url += '&redirect_uri=' + REDIRECT_URI;
     url += '&response_type=' + RESPONSE_TYPE;
-    url += '&scope=' + SCOPE;gi
+    url += '&scope=' + SCOPE;
     return url;
   }
   
