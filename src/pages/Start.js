@@ -6,9 +6,7 @@ export default function Start() {
     return (
         <Container sx={{ height: '100%' }}>
             <Grid2 container justifyContent="center" alignItems="center">
-                <Box sx={{ width: '100%', backgroundColor: theme.palette.background.paper, elevation: 6 }} >
-                    <Typography variant="h1">SPAPPLEFY</Typography>
-                </Box>
+
                 <Grid2 size={6} container justifyContent="center" alignItems="center">
                     <Box justifyContent="center" alignItems="center" sx={{ m: 30 }}>
                         <Paper elevation={8} sx={{ backgroundColor: theme.palette.background.paper, padding: 5 }} >
@@ -20,7 +18,7 @@ export default function Start() {
                 <Grid2 size={6} container justifyContent="center" alignItems="center">
                     <Box justifyContent="center" alignItems="center" sx={{ m: 30 }}>
                         <Paper elevation={8} sx={{ backgroundColor: theme.palette.background.paper, padding: 5 }} >
-                            <Typography variant='h2'>Apple</Typography>
+                            <Typography justifyContent="center" alignItems="center" variant='h2' sx={{width: "fit-content"}}>Apple</Typography>
                             <Button variant="contained">Contained</Button>
                         </Paper>
                     </Box>
@@ -29,4 +27,3 @@ export default function Start() {
         </Container >
 
     )
-}
