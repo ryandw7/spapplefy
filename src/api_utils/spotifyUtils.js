@@ -1,6 +1,6 @@
 
 //Return url to generate access token with spotify
-export const authFlow = () => {
+export const spotifyAuthFlow = () => {
     const CLIENT_ID = 'someClientId';
     const REDIRECT_URI = "http://localhost:3000/";
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
