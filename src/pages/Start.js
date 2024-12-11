@@ -4,7 +4,6 @@ import { Button, Grid2, Container, Box, Typography, useTheme, Paper } from '@mui
 export default function Start() {
     const theme = useTheme()
     return (
-
         <Container sx={{ height: '100%' }}>
             <Grid2 container justifyContent="center" alignItems="center">
 
