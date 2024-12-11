@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
-
+import { fetchSpotifyUser } from "./api_utils/spotifyUtils";
 export const authObj = {
 spotifyIsAuth: false,
 appleIsAuth: false,
@@ -7,7 +7,8 @@ appleIsAuth: false,
 
 const initialAuthState = {
 auth: authObj,
-setAuth: ()=>{}
+setAuth: ()=>{},
+fetchSpotifyUser: fetchSpotifyUser
 }
 
 const AuthContext = createContext(initialAuthState)
@@ -22,7 +23,7 @@ export const AuthProvider = ({children}) => {
 const useAuth = () => {
     const context = useContext(AuthContext);
 
-    if (context == undefined){
+    if (context === undefined){
         throw new Error("useAuth must be used within a ContextProvider");
     }
     return context;

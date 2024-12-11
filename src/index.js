@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css'
 import App from './App';
 import { ThemeProvider, CssBaseline, createTheme } from '@mui/material';
-
+import { AuthProvider } from './context';
 const theme = createTheme({
   palette: {
     primary: {
@@ -64,9 +64,11 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-    <App />
-    </ThemeProvider>
- 
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </ThemeProvider>
+
 );
