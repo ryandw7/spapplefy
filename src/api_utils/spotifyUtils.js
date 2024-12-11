@@ -1,15 +1,13 @@
-
+import { SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI } from "../globals";
 //Return url to generate access token with spotify
 export const spotifyAuthFlow = () => {
-    const CLIENT_ID = 'someClientId';
-    const REDIRECT_URI = "http://localhost:3000/";
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
     const RESPONSE_TYPE = "token";
     const SCOPE = 'playlist-modify-public playlist-modify-private'
     let url = '';
     url += AUTH_ENDPOINT;
-    url += '?client_id=' + CLIENT_ID;
-    url += '&redirect_uri=' + REDIRECT_URI;
+    url += '?client_id=' + SPOTIFY_CLIENT_ID;
+    url += '&redirect_uri=' + SPOTIFY_REDIRECT_URI;
     url += '&response_type=' + RESPONSE_TYPE;
     url += '&scope=' + SCOPE;
     return url;
