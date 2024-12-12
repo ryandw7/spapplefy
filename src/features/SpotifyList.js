@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Typography, List, ListItem } from '@mui/material';
+import { Box, Typography, List, ListItem, useTheme } from '@mui/material';
 export default function SpotifyList() {
+const theme = useTheme();
 
     return (
         <Box sx={{
@@ -9,15 +10,16 @@ export default function SpotifyList() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            flexDirection: "column",
             padding: 3,
             margin: 0
         }}>
-            <Typography>
+            <Typography variant="h2">
                 Spotify
             </Typography>
-            <List>
+            <List sx={{width: "80%", height: "80%",boxShadow: theme.shadows[7], backgroundColor: theme.palette.background.paper}}>
                 
-            </List>
+                </List>
         </Box>
     )
 }

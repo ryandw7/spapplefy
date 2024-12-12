@@ -1,4 +1,4 @@
 //FILL IN VALUES ON REMOTE REPOSITORY
 
-export const SPOTIFY_REDIRECT_URI = "https://laughing-guide-6j7qg44r465fr46r-3000.app.github.dev/";
-export const SPOTIFY_CLIENT_ID = "7ad1b0826dd04215b2d99eb1f6595e54";
+export const SPOTIFY_REDIRECT_URI = "http://localhost:3000/";
+export const SPOTIFY_CLIENT_ID = "e191ea5f28f7459eb45d6e9d24eb552f"

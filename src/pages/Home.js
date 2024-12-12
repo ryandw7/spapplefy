@@ -6,7 +6,18 @@ import SpotifyList from '../features/SpotifyList';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 export default function Home() {
 
-    const [ order, setOrder ] = useState([<SpotifyList/>, <AppleList/>])
+    const [ exportFromApple, setExportFromApple ] = useState(true)
+
+    const swapOrder = () => {
+        console.log("swapping")
+        setExportFromApple(()=>{
+            if(exportFromApple === true){
+                return false
+            }else{
+                return true
+            }
+        })
+    }
     const theme = useTheme()
     return (
         <Box sx={{
@@ -19,11 +30,22 @@ export default function Home() {
             margin: 0,
             padding: 3
         }}>
-           {order[0]}
-            <Button>
+           {
+            exportFromApple ?
+            <AppleList/>
+            :
+            <SpotifyList/>
+           }
+            <Button onClick={swapOrder}>
                 <SwapHorizIcon sx={{fontSize: 50}}/>
             </Button>
-            {order[1]}
+           
+           {
+            exportFromApple ?
+            <SpotifyList/>
+            :
+            <AppleList/>
+           } 
         </Box>
     )
 }
