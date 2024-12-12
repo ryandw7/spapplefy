@@ -1,27 +1,33 @@
 import React from 'react';
-import { useTheme, Box, Typography, List, ListItem } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import useAppContext from '../context';
 import PlaylistList from '../components/PlaylistList';
 import TrackList from '../components/TrackList';
 export default function AppleList() {
-const theme = useTheme();
-const {state} = useAppContext()
+
+    const { state } = useAppContext()
     return (
         <Box sx={{
-            height: "100vh",
+            height: "100%",
             width: "50vw",
             display: "flex",
-            flexDirection: "row",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            padding: 3,
+            padding: 0,
             margin: 0
         }}>
-            <Typography variant="h2" sx={{justifySelf: "flex-start", width: "100%"}}>
-                Apple
-            </Typography>
-            <PlaylistList provider='apple'/>
-            <TrackList playlist={state.playlists.apple.selectedPlaylist}/>
+            <Box sx={{ alignSelf: 'flex-start', justifySelf: "flex-start", width: "100%", textAlign: "center", marginBottom: 1, marginTop: 0 }}>
+                <Typography variant="h2" sx={{ width: "100%", textAlign: "center" }}>
+                    Apple
+                </Typography>
+            </Box>
+            <Box sx={{ width: "100%", height: "80%", display: "flex", flexDirection: "row" }}>
+                <PlaylistList provider='apple' />
+       
+                    <TrackList playlist={state.playlists.apple.selectedPlaylist} provider="apple" />
+                
+            </Box>
         </Box>
     )
 }

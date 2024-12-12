@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Grid2, Container, Box, Typography, useTheme, Paper } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Button, Box, Typography, useTheme, Paper } from '@mui/material';
 import { spotifyAuthFlow, hashSpotifyToken } from '../api_utils/spotifyUtils.js';
 import { hashAppleToken } from '../api_utils/appleUtils.js';
 import useAppContext from '../context.js';
@@ -50,7 +50,7 @@ export default function Start() {
             )
         }
 
-    }, [])
+    })
    
     const buttonIsDisabled = !state.auth.appleIsAuth || !state.auth.spotifyIsAuth
 

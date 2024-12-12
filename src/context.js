@@ -1,6 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
-import { fetchSpotifyUser } from "./api_utils/spotifyUtils";
-import { spotifyPlaylists } from "./mockData";
+
 import { mockAppleMusicPlaylists, mockSpotifyPlaylists } from "./mockData";
 const initialState = {
     auth: {

@@ -1,25 +1,31 @@
 import React from 'react';
-import { Box, Typography, List, ListItem, useTheme } from '@mui/material';
-export default function SpotifyList() {
-const theme = useTheme();
-
+import { Box, Typography } from '@mui/material';
+import useAppContext from '../context';
+import PlaylistList from '../components/PlaylistList';
+import TrackList from '../components/TrackList';
+export default function AppleList() {
+  
+    const { state } = useAppContext()
     return (
         <Box sx={{
-            height: "100vh",
+            height: "100%",
             width: "50vw",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            flexDirection: "column",
-            padding: 3,
+            padding: 0 ,
             margin: 0
         }}>
-            <Typography variant="h2">
+            <Box sx={{ alignSelf: 'flex-start', justifySelf: "flex-start", width: "100%", textAlign: "center", marginBottom: 1, marginTop: 0}}>
+            <Typography variant="h2" sx={{width: "100%", textAlign: "center"}}>
                 Spotify
             </Typography>
-            <List sx={{width: "80%", height: "80%",boxShadow: theme.shadows[7], backgroundColor: theme.palette.background.paper}}>
-                
-                </List>
+            </Box>
+            <Box sx={{width:"100%", height: "80%", display:"flex", flexDirection:"row"}}>
+                <PlaylistList provider='spotify' />
+                <TrackList playlist={state.playlists.spotify.selectedPlaylist } provider="spotify"/>
+            </Box>
         </Box>
     )
 }

@@ -1,6 +1,5 @@
 import React, { useState} from 'react';
-import { Box, Typography, Paper, List, useTheme, Button } from '@mui/material';
-import { ListAlt } from '@mui/icons-material';
+import { Box, Button } from '@mui/material';
 import AppleList from '../features/AppleList';
 import SpotifyList from '../features/SpotifyList';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
@@ -18,10 +17,10 @@ export default function Home() {
             }
         })
     }
-    const theme = useTheme()
+
     return (
         <Box sx={{
-            height: "100vh", // Full viewport height
+            height: "calc(100vh - 75px)", // Full viewport height
             width: "100vw",
             justifyContent: "center", // Centers content vertically
             alignItems: "center", // Centers content horizontally

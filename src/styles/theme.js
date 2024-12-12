@@ -66,6 +66,16 @@ const theme = createTheme({
         },
     },
     components: {
+        MuiListItem: {
+            styleOverrides: {
+                root: {
+                    '&.Mui-selected': {
+                        color: '#5FBB7D',
+                        backgroundColor: '#F0F3F3',
+                    },
+                },
+            }
+        },
         Container: {
             p: 0
         },
@@ -90,6 +100,10 @@ const theme = createTheme({
         styleOverrides: {
             root: {
                 padding: 0,
+                '&.Mui-selected': {
+                    color: '#5FBB7D',
+                    backgroundColor: '#F0F3F3'
+                }
             }
         }
     }

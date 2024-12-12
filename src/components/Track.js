@@ -1,8 +1,8 @@
 import React from 'react';
-import { ListItem, ListItemAvatar, ListItemText, Avatar, Typography, IconButton } from '@mui/material';
+import { ListItem, ListItemAvatar, ListItemText, Avatar, Typography, IconButton, useTheme } from '@mui/material';
 
 export default function Track({track, index}){
-
+const theme = useTheme()
     return (
         <ListItem
           key={index}
@@ -10,9 +10,13 @@ export default function Track({track, index}){
             display: 'flex',
             alignItems: 'center',
             padding: 2,
-            '&:hover': { bgcolor: 'grey.100' }
+            '&:hover': { bgcolor: 'grey.100' },
+            backgroundColor : theme.palette.background.paper,
+            margin: "5px auto",
+            width: "90%"
           }}
         >
+          
           <ListItemAvatar>
             <Avatar
               variant="rounded"
@@ -36,6 +40,7 @@ export default function Track({track, index}){
           <IconButton edge="end" aria-label="play">
         
           </IconButton>
+          
         </ListItem>
     )
 }
