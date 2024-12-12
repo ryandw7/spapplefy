@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Start from './pages/Start';
 import { BrowserRouter, Route, Routes } from 'react-router';
+import Home from './pages/Home.js';
 import Wrapper from './pages/Wrapper.js';
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Wrapper />}>
-          <Route path="/" element={<Start />} /></Route>
+          <Route path="/" element={<Start />} />
+          <Route path="/home" element={<Home />}/>
+        </Route>
       </Routes>
     </BrowserRouter>
 

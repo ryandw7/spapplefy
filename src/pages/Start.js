@@ -3,10 +3,12 @@ import { Button, Grid2, Container, Box, Typography, useTheme, Paper } from '@mui
 import { spotifyAuthFlow, hashSpotifyToken } from '../api_utils/spotifyUtils.js';
 import { hashAppleToken } from '../api_utils/appleUtils.js';
 import useAuth from '../context.js';
+import { useNavigate } from 'react-router';
 import CheckIcon from '@mui/icons-material/Check';
 export default function Start() {
+    const navigate = useNavigate();
     const theme = useTheme();
-    const { auth, setAuth } = useAuth()
+    const { auth, setAuth } = useAuth();
 
     const setRecent = (recent) => {
         setAuth((prev) => {
@@ -58,9 +60,9 @@ export default function Start() {
                 }
             })
         }
-        console.log(auth)
+        
     }, [])
-
+    console.log(auth)
    const buttonIsDisabled = !auth.appleIsAuth || !auth.spotifyIsAuth
 
     return (
@@ -142,6 +144,7 @@ export default function Start() {
                         transform: "translate(-50%, -50%)",
                     }}
                     disabled={buttonIsDisabled}
+                    onClick={()=>navigate("/home")}
                 >
                     Continue
                 </Button>

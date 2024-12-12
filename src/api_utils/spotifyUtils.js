@@ -21,7 +21,7 @@ export const hashSpotifyToken = () => {
     if (!accessToken && hash) {
         accessToken = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
         window.location.hash = "";
-        window.sessionStorage.setItem("token", accessToken);
+        window.sessionStorage.setItem("spotify_token", accessToken);
         window.sessionStorage.setItem("authorized", true);
 
     }
