@@ -2,22 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Button, Grid2, Container, Box, Typography, useTheme, Paper } from '@mui/material';
 import { spotifyAuthFlow, hashSpotifyToken } from '../api_utils/spotifyUtils.js';
 import { hashAppleToken } from '../api_utils/appleUtils.js';
-import useAuth from '../context.js';
+import useAppContext from '../context.js';
 import { useNavigate } from 'react-router';
 import CheckIcon from '@mui/icons-material/Check';
 export default function Start() {
     const navigate = useNavigate();
     const theme = useTheme();
-    const { auth, setAuth } = useAuth();
+    const { state, updateState } = useAppContext();
 
-    const setRecent = (recent) => {
-        setAuth((prev) => {
-            return {
-                ...prev,
-                recent: recent
-            }
-        })
-    }
     const handleSpotifyButtonClick = () => {
         window.sessionStorage.setItem("recent", 'spotify');
         window.location.href = spotifyAuthFlow();
@@ -26,12 +18,11 @@ export default function Start() {
         console.log("apple button clicked")
         window.sessionStorage.setItem("recent", 'apple');
         window.sessionStorage.setItem("apple_token", "token")
-        setAuth((prev) => {
-            return {
-                ...prev,
+        updateState('auth',
+            {
                 appleIsAuth: true
             }
-        })
+        )
     }
 
 
@@ -45,25 +36,23 @@ export default function Start() {
         const spotifyToken = window.sessionStorage.getItem("spotify_token");
         const appleToken = window.sessionStorage.getItem("apple_token");
         if (spotifyToken) {
-            setAuth((prev) => {
-                return {
-                    ...prev,
+            updateState('auth',
+                {
                     spotifyIsAuth: true
                 }
-            })
+            )
         }
         if (appleToken) {
-            setAuth((prev) => {
-                return {
-                    ...prev,
+            updateState('auth',
+                {
                     appleIsAuth: true
                 }
-            })
+            )
         }
-        
+
     }, [])
-    console.log(auth)
-   const buttonIsDisabled = !auth.appleIsAuth || !auth.spotifyIsAuth
+   
+    const buttonIsDisabled = !state.auth.appleIsAuth || !state.auth.spotifyIsAuth
 
     return (
 
@@ -101,7 +90,7 @@ export default function Start() {
                     }}
                 >
                     <Typography variant="h2" sx={{ marginBottom: 5 }}>Spotify</Typography>
-                    {auth.spotifyIsAuth ? (
+                    {state.auth.spotifyIsAuth ? (
                         <CheckIcon />
                     ) : (
                         <Button variant="contained" onClick={handleSpotifyButtonClick}>
@@ -127,7 +116,7 @@ export default function Start() {
                 >
                     <Typography variant="h2" sx={{ marginBottom: 5 }}>Apple</Typography>
                     {
-                        auth.appleIsAuth ?
+                        state.auth.appleIsAuth ?
                             <CheckIcon />
                             :
                             <Button variant="contained" onClick={handleAppleButtonClick}>Contained</Button>
@@ -144,7 +133,7 @@ export default function Start() {
                         transform: "translate(-50%, -50%)",
                     }}
                     disabled={buttonIsDisabled}
-                    onClick={()=>navigate("/home")}
+                    onClick={() => navigate("/home")}
                 >
                     Continue
                 </Button>

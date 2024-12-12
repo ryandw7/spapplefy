@@ -1,4 +1,4 @@
-const appleMusicPlaylists = [
+export const mockAppleMusicPlaylists = [
     {
         title: "Chill Vibes",
         tracks: [
@@ -49,4 +49,4 @@ const appleMusicPlaylists = [
     },
 ];
 
-const spotifyPlaylists = appleMusicPlaylists; // Assume similar playlists to avoid repetition
+export const mockSpotifyPlaylists = mockAppleMusicPlaylists; // Assume similar playlists to avoid repetition

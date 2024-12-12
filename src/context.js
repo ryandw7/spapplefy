@@ -1,32 +1,55 @@
 import React, { useState, createContext, useContext } from "react";
 import { fetchSpotifyUser } from "./api_utils/spotifyUtils";
-export const authObj = {
-spotifyIsAuth: false,
-appleIsAuth: false,
+import { spotifyPlaylists } from "./mockData";
+import { mockAppleMusicPlaylists, mockSpotifyPlaylists } from "./mockData";
+const initialState = {
+    auth: {
+        spotifyIsAuth: false,
+        appleIsAuth: false
+    },
+    playlists: {
+        apple: {
+            playlists: mockAppleMusicPlaylists,
+            selectedPlaylist: null
+        },
+        spotify: {
+            playlists: mockSpotifyPlaylists,
+            selectedPlaylist: null
+        }
+    }
 }
 
-const initialAuthState = {
-auth: authObj,
-setAuth: ()=>{},
-fetchSpotifyUser: fetchSpotifyUser
-}
+const Context = createContext({
+    state: initialState,
+    setState: () => { }
+})
 
-const AuthContext = createContext(initialAuthState)
+export const ContextProvider = ({ children }) => {
 
-export const AuthProvider = ({children}) => {
-    const [auth, setAuth] = useState(authObj)
+    const [state, setState] = useState(initialState)
+    const updateState = (key, value) => {
+        setState((prev) => {
+            return {
+                ...prev,
+                [key]: {
+                    ...prev[key],
+                    ...value
+                }
+            }
+        })
+    }
     return (
-        <AuthContext.Provider value={{auth, setAuth}}>{children}</AuthContext.Provider>
+        <Context.Provider value={{ state, updateState }}>{children}</Context.Provider>
     )
 }
 
-const useAuth = () => {
-    const context = useContext(AuthContext);
+const useAppContext = () => {
+    const context = useContext(Context);
 
-    if (context === undefined){
+    if (context === undefined) {
         throw new Error("useAuth must be used within a ContextProvider");
     }
     return context;
 }
 
-export default useAuth;
+export default useAppContext;

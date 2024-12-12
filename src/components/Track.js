@@ -1,6 +1,7 @@
 import React from 'react';
+import { ListItem, ListItemAvatar, ListItemText, Avatar, Typography, IconButton } from '@mui/material';
 
-export default function Track({track}){
+export default function Track({track, index}){
 
     return (
         <ListItem
@@ -33,7 +34,7 @@ export default function Track({track}){
             }
           />
           <IconButton edge="end" aria-label="play">
-            <PlayArrowIcon />
+        
           </IconButton>
         </ListItem>
     )
