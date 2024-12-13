@@ -31,9 +31,9 @@ export default function Home() {
         }}>
            {
             exportFromApple ?
-            <AppleList/>
+            <AppleList order="first"/>
             :
-            <SpotifyList/>
+            <SpotifyList order="first"/>
            }
             <Button onClick={swapOrder}>
                 <SwapHorizIcon sx={{fontSize: 50}}/>
@@ -41,9 +41,9 @@ export default function Home() {
            
            {
             exportFromApple ?
-            <SpotifyList/>
+            <SpotifyList order="second"/>
             :
-            <AppleList/>
+            <AppleList order="second"/>
            } 
         </Box>
     )

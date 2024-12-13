@@ -50,7 +50,7 @@ export default function Start() {
             )
         }
 
-    })
+    }, [])
    
     const buttonIsDisabled = !state.auth.appleIsAuth || !state.auth.spotifyIsAuth
 
@@ -71,7 +71,6 @@ export default function Start() {
                     justifyContent: "space-around",
                     alignItems: "center",
                     width: "80%", // Adjust width as needed
-                    gap: 4,
                 }}
             >
                 {/* Spotify Box */}

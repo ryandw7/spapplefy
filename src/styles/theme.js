@@ -47,12 +47,21 @@ const theme = createTheme({
     typography: {
         fontFamily: "'San Francisco', 'Helvetica Neue', 'Arial', sans-serif", // Apple's typography
         h1: {
-            fontSize: "3rem",
+            fontSize:  "clamp(2rem, 2vw, 3rem)",
             fontWeight: 700,
             color: "#1DB954", // Spotify green for large headers
         },
         h2: {
-            fontSize: "2rem",
+            fontSize: "clamp(1.75rem, 2vw, 2.5rem)",
+            fontWeight: 600,
+            color: "#000000",
+        },h3: {
+            fontSize: "clamp(1.5rem, 2vw, 2rem)",
+            fontWeight: 600,
+            color: "#1DB954",
+        },
+        h4: {
+            fontSize: "clamp(.25rem, 2vw, 1rem)",
             fontWeight: 600,
             color: "#1DB954",
         },

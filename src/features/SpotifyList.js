@@ -3,9 +3,10 @@ import { Box, Typography } from '@mui/material';
 import useAppContext from '../context';
 import PlaylistList from '../components/PlaylistList';
 import TrackList from '../components/TrackList';
-export default function AppleList() {
+export default function SpotifyList({order}) {
   
-    const { state } = useAppContext()
+    const { state } = useAppContext();
+    const selectedPlaylist = state.playlists.spotify.selectedPlaylist
     return (
         <Box sx={{
             height: "100%",
@@ -23,8 +24,21 @@ export default function AppleList() {
             </Typography>
             </Box>
             <Box sx={{width:"100%", height: "80%", display:"flex", flexDirection:"row"}}>
-                <PlaylistList provider='spotify' />
-                <TrackList playlist={state.playlists.spotify.selectedPlaylist } provider="spotify"/>
+                {order === 'first' ?
+                    <>
+                        <PlaylistList provider='spotify' />
+                        {selectedPlaylist &&
+                        <TrackList playlist={state.playlists.spotify.selectedPlaylist} provider="spotify" />
+                    }
+                    </>
+                    :
+                    <>
+                    {selectedPlaylist &&
+                        <TrackList playlist={state.playlists.spotify.selectedPlaylist} provider="spotify" />
+                    }
+                    <PlaylistList provider='spotify' />
+                    </>
+                }
             </Box>
         </Box>
     )

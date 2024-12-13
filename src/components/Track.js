@@ -13,7 +13,9 @@ const theme = useTheme()
             '&:hover': { bgcolor: 'grey.100' },
             backgroundColor : theme.palette.background.paper,
             margin: "5px auto",
-            width: "90%"
+            width: "90%",
+            maxWidth: "90%",
+            minWidth: "90%"
           }}
         >
           
