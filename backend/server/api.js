@@ -4,23 +4,23 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 // Load the private key from your file system
-const privateKey = fs.readFileSync(path.resolve(__dirname, 'AuthKey_ABC123DEFG.p8'));
+const privateKey = fs.readFileSync(path.resolve(__dirname, '../../../AuthKey_V5HX3QL2R3.p8'));
 
 // Function to generate the developer token
 function generateDeveloperToken() {
   const payload = {
-    iss: 'DEF123GHIJ',  // Your Team ID
-    iat: Math.floor(Date.now() / 1000),  // Current timestamp
-    exp: Math.floor(Date.now() / 1000) + 15777000,  // 6 months expiration
-    origin: ["https://yourdomain.com"]  // Optional, to restrict to your domain
+    iss: 'D989JLJWGD',
+    iat: Math.floor(Date.now() / 1000),
+    exp: Math.floor(Date.now() / 1000) + 157770,
+    //origin: ["https://yourdomain.com"]
   };
   
   const token = jwt.sign(payload, privateKey, {
     algorithm: 'ES256',
-    keyid: 'ABC123DEFG'  // Your Key ID
+    keyid: 'V5HX3QL2R3'  // Your Key ID
   });
   
   return token;
