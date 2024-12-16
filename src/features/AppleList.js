@@ -1,15 +1,17 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import useAppContext from '../context';
+import useAppContext from '../context/context';
 import PlaylistList from '../components/PlaylistList';
 import TrackList from '../components/TrackList';
+import { useAppleSelectors, useAppSelectors } from '../context/selectors';
+import { useAppActions, useAppleActions } from '../context/actions';
 export default function AppleList({ order }) {
 
-    const { state } = useAppContext();
-    const selectedPlaylist = state.playlists.apple.selectedPlaylist || null;
+    //const { selectedPlaylist, playlists } = useAppleSelectors();
     return (
+
         <Box sx={{
-            
+
             minWidth: "500px",
             height: "100%",
             width: "50vw",
@@ -25,24 +27,26 @@ export default function AppleList({ order }) {
                     Apple
                 </Typography>
             </Box>
-            <Box sx={{ width: "100%", height: "80%", display: "flex", flexDirection: "row", justifyContent: "center" }}>
-                {order === 'first' ?
-                    <>
-                        <PlaylistList provider='apple' />
-                        {selectedPlaylist &&
-                            <TrackList playlist={selectedPlaylist} provider="apple" />
-                        }
-                    </>
-                    :
-                    <>
-                        {selectedPlaylist &&
-                            <TrackList playlist={selectedPlaylist} provider="apple" />
-                        }
-                        <PlaylistList provider='apple' />
+            {/*playlists &&
+                <Box sx={{ width: "100%", height: "80%", display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                    {order === 'first' ?
+                        <>
+                            <PlaylistList provider='apple' selectedPlaylist={selectedPlaylist} playlists={playlists} />
+                            {selectedPlaylist &&
+                                <TrackList playlist={selectedPlaylist} provider="apple" />
+                            }
+                        </>
+                        :
+                        <>
+                            {selectedPlaylist &&
+                                <TrackList playlist={selectedPlaylist} provider="apple" />
+                            }
+                            <PlaylistList provider='apple' />
 
-                    </>
-                }
-            </Box>
+                        </>
+                    }
+                </Box>
+           */ }
         </Box>
     )
 }

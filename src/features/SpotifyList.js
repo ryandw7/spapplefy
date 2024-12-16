@@ -1,20 +1,16 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
-import useAppContext from '../context';
+import useAppContext from '../context/context';
 import PlaylistList from '../components/PlaylistList';
 import TrackList from '../components/TrackList';
+import { useSpotifyActions } from '../context/actions';
+import { useSpotifySelectors } from '../context/selectors';
+import useActionChain from '../utils/hooks/useActionChain';
 export default function SpotifyList({ order }) {
-
-    const { state, updateState, setSpotifyId } = useAppContext();
-    const selectedPlaylist = state.playlists.spotify.selectedPlaylist;
-
-
-    useEffect(() => {
-        const spotifyToken = window.sessionStorage.getItem("spotify_token");
-        if (spotifyToken) {
-            setSpotifyId()
-        }
-    }, [])
+    const { selectedPlaylist, playlists, userId } = useSpotifySelectors()
+    const { setSpotifyUser, setSpotifyPlaylists } = useSpotifyActions()
+    console.log(userId)
+    useActionChain([setSpotifyUser, setSpotifyPlaylists],[])
 
     return (
         <Box sx={{
@@ -32,23 +28,25 @@ export default function SpotifyList({ order }) {
                     Spotify
                 </Typography>
             </Box>
+            {/*playlists &&
             <Box sx={{ width: "100%", height: "80%", display: "flex", flexDirection: "row" }}>
                 {order === 'first' ?
                     <>
                         <PlaylistList provider='spotify' />
                         {selectedPlaylist &&
-                            <TrackList playlist={state.playlists.spotify.selectedPlaylist} provider="spotify" />
+                            <TrackList playlist={selectedPlaylist} provider="spotify" />
                         }
                     </>
                     :
                     <>
                         {selectedPlaylist &&
-                            <TrackList playlist={state.playlists.spotify.selectedPlaylist} provider="spotify" />
+                            <TrackList playlist={selectedPlaylist} provider="spotify" />
                         }
                         <PlaylistList provider='spotify' />
                     </>
                 }
             </Box>
+*/}
         </Box>
     )
 }
