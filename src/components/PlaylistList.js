@@ -2,15 +2,14 @@ import React from 'react';
 import { Box, Paper, Typography, List, ListItem, ListItemText } from '@mui/material';
 import useAppContext from '../context/context';
 import theme from '../styles/theme';
-import { getPlaylistsByProvider, getSelectedPlaylist, useSpotifySelectors, useAppSelectors, useAppleSelectors } from '../context/selectors';
-import { useAppActions } from '../context/actions';
+import { useAppSelectors } from '../context/selectors/appSelectors';
+import { useAppActions } from '../context/actions/appActions';
 export default function PlaylistList({ provider }) {
     
     const { getPlaylist, getSelectedPlaylist } = useAppSelectors();
     const { setSelectedPlaylistByProvider } = useAppActions();
     const selectedPlaylist = getSelectedPlaylist(provider);
-    const playlists = getPlaylistsByProvider(provider) || [];
-    console.log(playlists)
+    const playlists = []
     const handlePlaylistClick = (playlist) => {
         if (selectedPlaylist === playlist) {
             setSelectedPlaylistByProvider(provider, {})

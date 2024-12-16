@@ -1,15 +1,21 @@
-const combineReducers = (reducers) => (state, action) => {
-    return Object.keys(reducers).reduce((acc, key) => {
-        acc[key] = reducers[key](state[key], action);
-        return acc;
-    }, {});
-};
 
-const appleReducer = (state, action) => {
+const initialSpotifyState = {
+    user: {
+        status: { loading: false, error: null },
+        id: '',
+    },
+    playlists: {
+        status: { loading: false, error: null },
+        items: []
+    },
+    selectedPlaylist: {
+        id: '',
+        status: { loading: false, error: null },
+        tracks: []
+    }
 
-};
-
-const spotifyReducer = (state, action) => {
+}
+const spotifyReducer = (state = initialSpotifyState, action) => {
     switch (action.type) {
         case 'SET_SPOTIFY_USER_PENDING':
             return { ...state, user: null, status: { loading: true, error: null } };
@@ -28,23 +34,4 @@ const spotifyReducer = (state, action) => {
     }
 };
 
-
-const appReducer = (state, action) => {
-    switch(action.type){
-        case 'SET_APPLE_IS_AUTH_TRUE':
-            return {...state, appleIsAuth: true};
-        case 'SET_SPOTIFY_IS_AUTH_TRUE':
-            return {...state, spotifyIsAuth: true};
-        case 'SET_EXPORT_FROM_APPLE':
-            return { ...state, exportFromApple: action.payload};
-    }
-};
-
-const reducers = {
-    apple: appleReducer,
-    spotify: spotifyReducer,
-    app: appReducer
-}
-
-const rootReducer = combineReducers(reducers)
-export default rootReducer;
+export default spotifyReducer;

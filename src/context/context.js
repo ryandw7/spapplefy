@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useReducer } from "react";
-import rootReducer from "./reducer";
+import rootReducer from "./reducers/rootReducer";
 import { mockAppleMusicPlaylists } from "../mockData";
+
+
+
 const initialState = {
     apple: {
         user: {
@@ -41,11 +44,14 @@ const initialState = {
     },
 };
 
+
 const Context = createContext();
+
+
 
 export const ContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(rootReducer, initialState);
-
+    console.log(state)
     return (
         <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
     );

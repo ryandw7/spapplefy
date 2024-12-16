@@ -1,19 +1,6 @@
-import { fetchSpotifyUser, fetchSpotifyPlaylists } from "../utils/api_utils/spotifyUtils";
-import useAppContext from "./context";
-
-
-
-//ASYNC ACTIONS
-//SPOTIFY
-
-export const setSelectedPlaylist = (dispatch, provider, playlist) => {
-    if (provider === 'spotify') {
-        dispatch({ type: 'SET_SELECTED_SPOTIFY_PLAYLIST', payload: playlist })
-    } else {
-        dispatch({ type: 'SET_SELECTED_APPLE_PLAYLIST', payload: playlist })
-    }
-}
-
+import useAppContext from "../context";
+import { fetchSpotifyPlaylists, fetchSpotifyUser } from "../../utils/api_utils/spotifyUtils";
+import { setSelectedPlaylist } from "./appActions";
 export const useSpotifyActions = () => {
     const { state, dispatch } = useAppContext()
 
@@ -54,33 +41,4 @@ export const useSpotifyActions = () => {
         setSelectedPlaylist(dispatch, 'spotify', playlist)
     }
     return { setSpotifyUser, setSpotifyPlaylists, setSelectedSpotifyPlaylist }
-}
-
-
-export const useAppleActions = () => {
-    const { dispatch } = useAppContext();
-
-    const setSelectedApplePlaylist = (playlist) => {
-        setSelectedPlaylist(dispatch, 'apple', playlist)
-    }
-
-    return setSelectedApplePlaylist()
-}
-//APP ACTIONS
-export const useAppActions = () => {
-    const { state, dispatch } = useAppContext();
-    const setSelectedPlaylistByProvider = (provider, playlist) => {
-        setSelectedPlaylist(dispatch, provider, playlist)
-    }
-
-    const setSpotifyIsAuth = () => {
-        dispatch({ type: 'SET_SPOTIFY_IS_AUTH_TRUE' })
-    }
-    const setAppleIsAuth = () => {
-        dispatch({ type: 'SET_APPLE_IS_AUTH_TRUE' })
-    }
-    const setExportFromApple = (bool) => {
-        dispatch({ type: 'SET_EXPORT_FROM_APPLE', payload: bool })
-    }
-    return { setSpotifyIsAuth, setAppleIsAuth, setExportFromApple, setSelectedPlaylistByProvider }
 }
