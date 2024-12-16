@@ -2,7 +2,7 @@ import React from 'react';
 import Track from './Track';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import { Box, Button, Paper, Typography, List, useTheme, Collapse } from '@mui/material';
-import useAppContext from '../context';
+import useAppContext from '../context/context';
 export default function TrackList({ playlist, provider }) {
     const { state } = useAppContext()
     let selectedPlaylist;

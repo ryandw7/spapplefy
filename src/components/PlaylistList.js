@@ -1,30 +1,22 @@
 import React from 'react';
 import { Box, Paper, Typography, List, ListItem, ListItemText } from '@mui/material';
-import useAppContext from '../context';
+import useAppContext from '../context/context';
 import theme from '../styles/theme';
-
+import { getPlaylistsByProvider, getSelectedPlaylist, useSpotifySelectors, useAppSelectors, useAppleSelectors } from '../context/selectors';
+import { useAppActions } from '../context/actions';
 export default function PlaylistList({ provider }) {
-    const { state, updateState } = useAppContext();
-    const playlists = state.playlists[provider].playlists;
-    const selectedPlaylist = state.playlists[provider].selectedPlaylist;
+    
+    const { getPlaylist, getSelectedPlaylist } = useAppSelectors();
+    const { setSelectedPlaylistByProvider } = useAppActions();
+    const selectedPlaylist = getSelectedPlaylist(provider);
+    const playlists = getPlaylistsByProvider(provider) || [];
+    console.log(playlists)
     const handlePlaylistClick = (playlist) => {
-
-        const newObj = state.playlists;
-
         if (selectedPlaylist === playlist) {
-            newObj[provider] = {
-                playlists: playlists,
-                selectedPlaylist: null
-            }
+            setSelectedPlaylistByProvider(provider, {})
         } else {
-            newObj[provider] = {
-                playlists: playlists,
-                selectedPlaylist: playlist
-            }
+            setSelectedPlaylistByProvider(provider, playlist)
         }
-        updateState('playlists', newObj)
-
-
     };
     const selectedBorder = (playlist) => {
         if (selectedPlaylist === playlist) {

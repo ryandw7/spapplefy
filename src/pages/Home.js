@@ -4,7 +4,7 @@ import AppleList from '../features/AppleList';
 import SpotifyList from '../features/SpotifyList';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import IosShareIcon from '@mui/icons-material/IosShare';
-import { retrieveSpotifyUser, getSpotifyPlaylists } from '../api_utils/spotifyUtils';
+
 export default function Home() {
 
     const [exportFromApple, setExportFromApple] = useState(true)

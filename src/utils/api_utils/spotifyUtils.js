@@ -1,6 +1,7 @@
-import { SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI } from "../globals";
+import { SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI } from "../../globals";
 //Return url to generate access token with spotify
 export const spotifyAuthFlow = () => {
+
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
     const RESPONSE_TYPE = "token";
     const SCOPE = 'playlist-modify-public playlist-modify-private'
@@ -28,9 +29,7 @@ export const hashSpotifyToken = () => {
 }
 
 //Return data from fetching user info after access token has been retrieved
-
-
-export const retrieveSpotifyUser = async () => {
+export const fetchSpotifyUser = async () => {
 
     try {
         const res = await fetch('https://api.spotify.com/v1/me?access_token=' + window.sessionStorage.getItem("spotify_token"))
@@ -41,14 +40,15 @@ export const retrieveSpotifyUser = async () => {
     }
 }
 
-export const getSpotifyPlaylists = async (userId, token) => {
-    console.log(token)
+
+export const fetchSpotifyPlaylists = async (userId, token) => {
+   
     const res = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
         headers: {
             Authorization: `Bearer ${token}`,
             "Content-type": "application/json; charset=UTF-8"
         }
     });
-    const data = await res.json()
-    console.log(data)
+    const data = await res.json();
+    return data;
 }
