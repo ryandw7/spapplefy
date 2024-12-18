@@ -16,5 +16,6 @@ const reducers = {
     app: appReducer
 }
 
+console.log(reducers)
 const rootReducer = combineReducers(reducers)
 export default rootReducer;

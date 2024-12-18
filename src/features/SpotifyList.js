@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 import useAppContext from '../context/context';
 import PlaylistList from '../components/PlaylistList';
 import TrackList from '../components/TrackList';
-import { useSpotifyActions } from '../context/actions/spotifyActions';
+import useSpotifyActions from '../context/actions/spotifyActions';
 import { useSpotifySelectors } from '../context/selectors/spotifySelectors';
 import useActionChain from '../utils/hooks/useActionChain';
 export default function SpotifyList({ order }) {

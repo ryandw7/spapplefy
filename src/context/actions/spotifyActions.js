@@ -1,15 +1,17 @@
 import useAppContext from "../context";
 import { fetchSpotifyPlaylists, fetchSpotifyUser } from "../../utils/api_utils/spotifyUtils";
 import { setSelectedPlaylist } from "./appActions";
-export const useSpotifyActions = () => {
-    const { state, dispatch } = useAppContext()
+
+const useSpotifyActions = () => {
+    const { dispatch, state } = useAppContext()
 
     const setSpotifyUser = async () => {
         dispatch({ type: 'SET_SPOTIFY_USER_PENDING' });
         try {
             const user = await fetchSpotifyUser();
-            const payload = { id: user.id, name: user.name }; // Example structure
-            dispatch({ type: 'SET_SPOTIFY_USER_FULFILLED', payload });
+            const payload = { id: user.id, name: user.display_name };
+            
+            dispatch({ type: 'SET_SPOTIFY_USER_FULFILLED', payload: payload });
         } catch (error) {
             dispatch({
                 type: 'SET_SPOTIFY_USER_REJECTED',
@@ -21,6 +23,7 @@ export const useSpotifyActions = () => {
     const setSpotifyPlaylists = async (token) => {
         dispatch({ type: 'SET_SPOTIFY_PLAYLISTS_PENDING' });
         try {
+
             const userId = state.spotify.user.id;
             const playlistsData = await fetchSpotifyPlaylists(userId, token);
             const playlists = playlistsData.items;
@@ -37,8 +40,7 @@ export const useSpotifyActions = () => {
         }
     }
 
-    const setSelectedSpotifyPlaylist = (playlist) => {
-        setSelectedPlaylist(dispatch, 'spotify', playlist)
-    }
-    return { setSpotifyUser, setSpotifyPlaylists, setSelectedSpotifyPlaylist }
+    return { setSpotifyUser, setSpotifyPlaylists }
 }
+
+export default useSpotifyActions;

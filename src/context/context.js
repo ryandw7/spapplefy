@@ -14,12 +14,6 @@ const initialState = {
             status: { loading: false, error: null },
             items: mockAppleMusicPlaylists
         },
-        selectedPlaylist: {
-            id: '',
-            status: { loading: false, error: null },
-            tracks: []
-        }
-
     },
     spotify: {
         user: {
@@ -29,23 +23,24 @@ const initialState = {
         playlists: {
             status: { loading: false, error: null },
             items: []
-        },
-        selectedPlaylist: {
-            id: '',
-            status: { loading: false, error: null },
-            tracks: []
         }
 
     },
     app: {
         spotifyIsAuth: false,
         appleIsAuth: false,
-        exportFromApple: false,
+        selectedProvider: 'spotify',
+        selectedPlaylist: {
+            id: '',
+            playlist: [],
+            status: { loading: false, error: null },
+            tracks: []
+        }
     },
 };
 
 
-const Context = createContext();
+const Context = createContext(initialState);
 
 
 

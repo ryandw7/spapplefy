@@ -1,35 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Button, Typography } from '@mui/material';
-import AppleList from '../features/AppleList';
-import SpotifyList from '../features/SpotifyList';
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
-import IosShareIcon from '@mui/icons-material/IosShare';
-import { useAppActions } from '../context/actions/appActions';
-import { useAppSelectors } from '../context/selectors/appSelectors';
-export default function Home() {
-    const { setSpotifyIsAuth, setAppleIsAuth } = useAppActions();
-    const { spotifyIsAuth, appleIsAuth } = useAppSelectors() || false;
-    const [exportFromApple, setExportFromApple] = useState(true);
-    const [ loading, setLoading ] = useState(true);
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import useSpotifyPlaylists from '../context/actions/useSpotifyPlaylists';
 
-    useEffect(() => {
-        setSpotifyIsAuth();
-        setAppleIsAuth();
-        setLoading(false)
-    }, [])
-    const swapOrder = () => {
-        console.log("swapping")
-        setExportFromApple(() => {
-            if (exportFromApple === true) {
-                return false
-            } else {
-                return true
-            }
-        })
+export default function Home() {
+
+    const {spotifyPlaylistsLoading, spotifyPlaylists } = useSpotifyPlaylists();
+
+    if(spotifyPlaylistsLoading || !spotifyPlaylists){
+        return (
+            <Box><Typography>Loading...</Typography></Box>
+        )
     }
-    if(loading){
-        return <Box><Typography>No Content</Typography></Box>
-    }
+    
     //console.log(appleIsAuth && appleIsAuth, spotifyIsAuth && spotifyIsAuth)
     return (
         <Box sx={{
@@ -42,8 +24,8 @@ export default function Home() {
             margin: 0,
             padding: 3
         }}>
-            
-            {/*appleIsAuth && spotifyIsAuth &&
+
+           {/*  appleIsAuth && spotifyIsAuth &&
                 <>
                     {
                         exportFromApple ?
@@ -64,7 +46,7 @@ export default function Home() {
                             <AppleList order="second" />
                     }
                 </>
-          */  }
+           */ }
 
         </Box>
     )

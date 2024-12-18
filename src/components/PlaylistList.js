@@ -2,21 +2,9 @@ import React from 'react';
 import { Box, Paper, Typography, List, ListItem, ListItemText } from '@mui/material';
 import useAppContext from '../context/context';
 import theme from '../styles/theme';
-import { useAppSelectors } from '../context/selectors/appSelectors';
-import { useAppActions } from '../context/actions/appActions';
-export default function PlaylistList({ provider }) {
+
+export default function PlaylistList({ playlists, setPlaylist, selectedPlaylist }) {
     
-    const { getPlaylist, getSelectedPlaylist } = useAppSelectors();
-    const { setSelectedPlaylistByProvider } = useAppActions();
-    const selectedPlaylist = getSelectedPlaylist(provider);
-    const playlists = []
-    const handlePlaylistClick = (playlist) => {
-        if (selectedPlaylist === playlist) {
-            setSelectedPlaylistByProvider(provider, {})
-        } else {
-            setSelectedPlaylistByProvider(provider, playlist)
-        }
-    };
     const selectedBorder = (playlist) => {
         if (selectedPlaylist === playlist) {
             return `3px solid ${theme.palette.primary.main}`
@@ -44,7 +32,7 @@ export default function PlaylistList({ provider }) {
                 <ListItem
                     key={index}
                     button
-                    onClick={() => handlePlaylistClick(playlist)}
+                   // onClick={() => handlePlaylistClick(playlist)}
                     selected={true}
                     sx={{
                         padding: "4px",

@@ -13,7 +13,7 @@ export const getAppleSelectedPlaylistStatus = (state) => state.apple.selectedPla
 
 export const useAppleSelectors = () => {
     const { state } = useAppContext()
-    console.log(state.apple)
+    
     const userId = getAppleUserId(state);
     const userStatus = getAppleUserStatus(state);
     const playlists = getApplePlaylists(state);

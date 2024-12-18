@@ -5,7 +5,7 @@ import { hashAppleToken } from '../utils/api_utils/appleUtils.js';
 import useAppContext from '../context/context.js';
 import { useNavigate } from 'react-router';
 import CheckIcon from '@mui/icons-material/Check';
-import { useAppActions } from '../context/actions/appActions.js';
+import useAppActions from '../context/actions/appActions.js';
 import { useAppSelectors } from '../context/selectors/appSelectors.js';
 export default function Start() {
     const { setAppleIsAuth, setSpotifyIsAuth } = useAppActions();
