@@ -1,8 +1,9 @@
 
-const { TextDecoder, TextEncoder, } = require('node:util')
+const { TextDecoder, TextEncoder, } = require('node:util');
 const { ReadableStream, TransformStream, markResourceTiming } = require('node:stream/web');
-const { clearImmediate } = require('node:timers')
-const { performance } = require("node:perf_hooks")
+const { clearImmediate } = require('node:timers');
+const { performance } = require("node:perf_hooks");
+const { BroadcastChannel } = require("worker_threads")
 Object.defineProperties(globalThis, {
   TextDecoder: { value: TextDecoder },
   TextEncoder: { value: TextEncoder },
@@ -10,7 +11,8 @@ Object.defineProperties(globalThis, {
   TransformStream: { value: TransformStream },
   clearImmediate: { value: clearImmediate },
   performance: { value: performance, writable: true },
-  MessagePort: {} 
+  MessagePort: {},
+  BroadcastChannel: { value: BroadcastChannel}
 })
 
 const { Blob, File } = require('node:buffer')

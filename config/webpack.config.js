@@ -337,7 +337,6 @@ module.exports = function (webpackEnv) {
       ],
     },
     module: {
-      strictExportPresence: true,
       rules: [
         // Handle node_modules packages that contain sourcemaps
         shouldUseSourceMap && {
@@ -411,14 +410,7 @@ module.exports = function (webpackEnv) {
                 customize: require.resolve(
                   'babel-preset-react-app/webpack-overrides'
                 ),
-                presets: [
-                  [
-                    require.resolve('babel-preset-react-app'),
-                    {
-                      runtime: hasJsxRuntime ? 'automatic' : 'classic',
-                    },
-                  ],
-                ],
+
                 
                 plugins: [
                   isEnvDevelopment &&
